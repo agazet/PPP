@@ -4,7 +4,7 @@ Problems with Naming and Long Methods
 true of the System Under Test (SUT) as well as the tests themselves.
 
 We've been getting some hints about feature enhancements to
-the Catalog and DataServices classes.  Take a look at those two
+the Catalog and DataServices classes. Take a look at those two
 classes and their tests. Can you easily understand what is going on
 in that code? If so, go ahead and take the rest of the afternoon off.
 
