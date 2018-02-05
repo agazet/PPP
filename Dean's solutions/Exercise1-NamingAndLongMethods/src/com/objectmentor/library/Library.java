@@ -6,20 +6,20 @@ import java.util.Date;
 import com.objectmentor.library.models.Receipt;
 import com.objectmentor.library.models.Book;
 import com.objectmentor.library.models.Patron;
-import com.objectmentor.library.data.DataServices;
+import com.objectmentor.library.data.CatalogIsbnOperations;
 
 public class Library {
   private Catalog c;
-  private DataServices ds;
+  private CatalogIsbnOperations ds;
   private Date tmpDate = null;
 
-  public Library(DataServices ds) {
+  public Library(CatalogIsbnOperations ds) {
     c = new Catalog(ds);
     this.ds = ds;
   }
 
   public Book acceptBook(String isbn) {
-    return c.add(isbn);
+    return c.addToCatalog(isbn);
   }
 
   /**

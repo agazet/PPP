@@ -35,7 +35,7 @@ public class CatalogTest {
 	public void testCatalog() {
 		// one book test
 		mockData.setBookToReturn(new BookTitle("ISBN"));
-		Book b1 = catalog.add("ISBN");
+		Book b1 = catalog.addToCatalog("ISBN");
 		assertEquals("ISBN", mockData.wasLastCalledWithThisIsbn);
 		assertEquals(mockData.added.getTitle(), b1.getTitle());
 		assertNull(catalog.find1("NOT ISBN"));
@@ -45,7 +45,7 @@ public class CatalogTest {
 		assertNotNull(catalog.find2("ISBN"));
 		// multiple books
 		mockData.setBookToReturn(new BookTitle("ISBN 2"));
-		Book b2 = catalog.add("ISBN 2");
+		Book b2 = catalog.addToCatalog("ISBN 2");
 		assertSame(b1, catalog.find1("ISBN"));
 		assertSame(b2, catalog.find1("ISBN 2"));
 		// borrow one of one
@@ -55,12 +55,12 @@ public class CatalogTest {
 		assertEquals(null, catalog.find2("ISBN 2"));
 		// non-existant
 		try {
-			catalog.add("NON-EXISTENT ISBN");
+			catalog.addToCatalog("NON-EXISTENT ISBN");
 			fail();
 		} catch (IsbnDoesNotExistException e) {
 		}
 		// multiple copies
-		Book b1_2 = catalog.add("ISBN");
+		Book b1_2 = catalog.addToCatalog("ISBN");
 		List cl = catalog.findList("ISBN");
 		assertEquals(2, cl.size());
 		assertTrue(cl.contains(b1));
@@ -72,7 +72,7 @@ public class CatalogTest {
 	}
 
 	public void oneBook_testOk() {
-		Book b1 = catalog.add("ISBN");
+		Book b1 = catalog.addToCatalog("ISBN");
 		assertEquals("ISBN", mockData.wasLastCalledWithThisIsbn);
 		assertEquals(mockData.added.getTitle(), b1.getTitle());
 		assertNull(catalog.find1("NOT ISBN"));

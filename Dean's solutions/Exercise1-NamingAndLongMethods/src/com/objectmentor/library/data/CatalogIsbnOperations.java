@@ -4,7 +4,7 @@ import com.objectmentor.library.models.*;
 
 import java.util.List;
 
-public interface DataServices {
+public interface CatalogIsbnOperations {
 
   //ADD FUNCTIONS---------------------
   /**

@@ -1,31 +1,33 @@
 package com.objectmentor.library;
 
-import com.objectmentor.library.models.*;
-import com.objectmentor.library.data.*;
-
 import java.util.List;
+
+import com.objectmentor.library.data.CatalogIsbnOperations;
+import com.objectmentor.library.data.IsbnDoesNotExistException;
+import com.objectmentor.library.models.Book;
+import com.objectmentor.library.models.BookTitle;
 
 public class Catalog {
 
-  private DataServices ds;
+  private CatalogIsbnOperations catalogOperations;
 
-  public Catalog(DataServices ds) {
-    this.ds = ds;
+  public Catalog(CatalogIsbnOperations operations) {
+    this.catalogOperations = operations;
   }
 
-  /**
-   * Adds a copy of a Book to the catalog
-   * @param string
-   * @return
-   */
-  public Book add(String string) {
-    //string is isbn - get the title from the isbnService
-    //giving it the isbn
-    BookTitle t = ds.findTitleByIsbn(string);
-    if (t == null)
-      throw new IsbnDoesNotExistException();
-    //addBook the copy if we found it
-    return ds.addBook(t);
+  public Book addToCatalog(String isbn) {
+	return addBookIfFound(isbn);
+  }
+
+  private Book addBookIfFound(String isbn) {
+	  return catalogOperations.addBook(findBookByIsbn(isbn));
+  }
+  
+  private BookTitle findBookByIsbn(String isbn) {
+	  BookTitle bookTitle = catalogOperations.findTitleByIsbn(isbn);
+	  if (bookTitle == null)
+		  throw new IsbnDoesNotExistException();
+	  return bookTitle;
   }
 
   /**
@@ -34,7 +36,7 @@ public class Catalog {
    * @return
    */
   public Book find1(String string) {
-    return ds.findCopy1(string);
+    return catalogOperations.findCopy1(string);
   }
 
   /**
@@ -44,7 +46,7 @@ public class Catalog {
    * @return
    */
   public List findList(String string) {
-    return ds.findMany(string);
+    return catalogOperations.findMany(string);
   }
 
   /**
@@ -52,7 +54,7 @@ public class Catalog {
    * @return
    */
   public int getCount() {
-    return ds.countBooks();
+    return catalogOperations.countBooks();
   }
 
   /**
@@ -62,7 +64,7 @@ public class Catalog {
    * @return
    */
   public boolean exists(String string) {
-    return ds.canFindCopy(string);
+    return catalogOperations.canFindCopy(string);
   }
 
   /**
@@ -72,7 +74,7 @@ public class Catalog {
    * @return
    */
   public Book find2(String string) {
-    return ds.findAvailableCopy(string);
+    return catalogOperations.findAvailableCopy(string);
   }
 
   /**
@@ -81,6 +83,6 @@ public class Catalog {
    * @return
    */
   public Book find3(String string) {
-    return ds.findCopy2(string);
+    return catalogOperations.findCopy2(string);
   }
 }

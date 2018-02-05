@@ -1,11 +1,11 @@
 package com.objectmentor.library.mocks;
 
 import com.objectmentor.library.models.*;
-import com.objectmentor.library.data.DataServices;
+import com.objectmentor.library.data.CatalogIsbnOperations;
 
 import java.util.*;
 
-public class MockDataServices implements DataServices {
+public class MockDataServices implements CatalogIsbnOperations {
   public Book added;
   private Map map = new HashMap();
   private static long lastId = 0;
