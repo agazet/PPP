@@ -1,6 +1,16 @@
 package com.objectmentor.library;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.util.List;
+
+import org.junit.Test;
 
 import com.objectmentor.library.data.IsbnDoesNotExistException;
 import com.objectmentor.library.mocks.MockDataServices;
@@ -9,10 +19,9 @@ import com.objectmentor.library.models.BookTitle;
 import com.objectmentor.library.models.Patron;
 import com.objectmentor.library.models.Receipt;
 
-import junit.framework.TestCase;
+public class CatalogTest {
 
-public class CatalogTest extends TestCase {
-
+	@Test
 	public void testCatalog() {
 		MockDataServices ds;
 		Catalog c;
