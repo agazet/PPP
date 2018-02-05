@@ -13,7 +13,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.objectmentor.library.data.IsbnDoesNotExistException;
+import com.objectmentor.library.data.BookWithIsbnDoesNotExist;
 import com.objectmentor.library.mocks.MockDataServices;
 import com.objectmentor.library.models.Book;
 import com.objectmentor.library.models.BookTitle;
@@ -57,7 +57,7 @@ public class CatalogTest {
 		try {
 			catalog.addToCatalog("NON-EXISTENT ISBN");
 			fail();
-		} catch (IsbnDoesNotExistException e) {
+		} catch (BookWithIsbnDoesNotExist e) {
 		}
 		// multiple copies
 		Book b1_2 = catalog.addToCatalog("ISBN");

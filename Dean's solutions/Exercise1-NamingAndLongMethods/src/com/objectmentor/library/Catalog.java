@@ -3,7 +3,7 @@ package com.objectmentor.library;
 import java.util.List;
 
 import com.objectmentor.library.data.CatalogIsbnOperations;
-import com.objectmentor.library.data.IsbnDoesNotExistException;
+import com.objectmentor.library.data.BookWithIsbnDoesNotExist;
 import com.objectmentor.library.models.Book;
 import com.objectmentor.library.models.BookTitle;
 
@@ -26,7 +26,7 @@ public class Catalog {
   private BookTitle findBookByIsbn(String isbn) {
 	  BookTitle bookTitle = catalogOperations.findTitleByIsbn(isbn);
 	  if (bookTitle == null)
-		  throw new IsbnDoesNotExistException();
+		  throw new BookWithIsbnDoesNotExist();
 	  return bookTitle;
   }
 
